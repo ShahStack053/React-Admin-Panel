@@ -1,9 +1,64 @@
-import "./userList.css"
+import "./userList.css";
+import { DataGrid } from "@material-ui/data-grid";
+import {DeleteOutline} from "@material-ui/icons"
+import { userRows } from "../../../DummyData";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function UserList() {
-    return (
-        <div>
-            UserList
-        </div>
-    )
+    const [data,setData]=useState(userRows)
+
+    const handleDelete=(id)=>{
+        setData(data.filter((item) => item.id !== id));
+    };
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 90 },
+    { field: "user", headerName: "User", width: 200, renderCell:(params)=>{
+        return(
+            <div className="userListUser">
+                <img className="userListImage" src={params.row.avatar} alt="" />
+                {params.row.userName}
+            </div>
+        )
+    } },
+    { field: "email", headerName: "Email", width: 200 },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
+    },
+    {
+      field: "transaction",
+      headerName: "Transaction",
+      width: 160,
+    },
+    {
+    field:"action", headerName: "Action", width: 200, renderCell:(params)=>{
+        return(
+            <>
+            <Link to={"/user/"+params.row.id}>
+            <button className="userlistEdit">Edit</button>
+            </Link>
+            <DeleteOutline className="userlistDelete" onClick={()=>handleDelete(params.row.id)}/>
+            </>
+        )
+    } },
+   
+  ];
+
+ 
+
+  return (
+    <div className="userList">
+      <DataGrid
+        rows={data}
+         disableSelectionOnClick
+        columns={columns}
+        pageSize={8}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>
+  );
 }
