@@ -13,8 +13,16 @@ export default function UserList() {
     };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    { field: "user", headerName: "User", width: 200, renderCell:(params)=>{
+    {
+       field: "id",
+        headerName: "ID",
+         width: 90 
+    },
+
+    { field: "user",
+     headerName: "User",
+      width: 200,
+       renderCell:(params)=>{
         return(
             <div className="userListUser">
                 <img className="userListImage" src={params.row.avatar} alt="" />
@@ -22,7 +30,12 @@ export default function UserList() {
             </div>
         )
     } },
-    { field: "email", headerName: "Email", width: 200 },
+
+    { 
+      field: "email",
+     headerName: "Email",
+      width: 200 
+    },
     {
       field: "status",
       headerName: "Status",
@@ -34,7 +47,10 @@ export default function UserList() {
       width: 160,
     },
     {
-    field:"action", headerName: "Action", width: 200, renderCell:(params)=>{
+    field:"action",
+    headerName: "Action",
+    width: 200,
+       renderCell:(params)=>{
         return(
             <>
             <Link to={"/user/"+params.row.id}>
