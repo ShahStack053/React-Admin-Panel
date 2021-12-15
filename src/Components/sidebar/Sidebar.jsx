@@ -1,4 +1,5 @@
 import "./sidebar.css";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import {
   LineStyle,
   TrendingUp,
@@ -17,11 +18,13 @@ export default function Sidebar() {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
-          <ul className="sidebarList">
+          <ul className="sidebarList"> 
+          <Link to="/" className="link">
             <li className="sidebarListItem active">
               <LineStyle className="sidebarIcons" />
               home
             </li>
+          </Link>
             <li className="sidebarListItem">
               <Timeline className="sidebarIcons" />
               Analytic
@@ -35,14 +38,18 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
+          <Link to="/users" className="link">
             <li className="sidebarListItem ">
               <PersonOutline className="sidebarIcons" />
               Users
             </li>
+          </Link>
+            <Link to="/products"  className="link">
             <li className="sidebarListItem">
               <TrendingUp className="sidebarIcons" />
               Products
             </li>
+            </Link>
             <li className="sidebarListItem">
               <AttachMoney className="sidebarIcons" />
               Transactions
